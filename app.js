@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 });
 
 
-//app.use('/posts', require('./routes/post_routes'));
+app.use('/posts', require('./routes/post_routes'));
 app.use('/comments', require('./routes/comment_routes'));
 // app connection
 app.listen(process.env.PORT, () => {

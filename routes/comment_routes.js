@@ -1,5 +1,5 @@
 const express = require('express');
-const { createComment, updateComment, deleteComment , getCommentById } = require('../controllers/comments-controllers');
+const { createComment, updateComment, deleteComment , getCommentById } = require('../controllers/comments_controllers');
 const router = express.Router();
 
 // Create a new comment
