@@ -64,3 +64,71 @@ Content-Type: application/json
     "content": "hello",
     "sender": "test"
 }
+
+###
+
+GET http://localhost:3000/posts/posts
+
+### 
+
+POST http://localhost:3000/comments/CreateComment
+Content-Type: application/json
+
+{
+    "_id": 1,
+    "postId": 1,
+    "content": "ok",
+    "sender": "matan"
+} 
+###
+
+POST http://localhost:3000/comments/CreateComment
+Content-Type: application/json
+
+{
+    "_id": 2,
+    "postId": 1,
+    "content": "good",
+    "sender": "roni"
+}
+
+###
+
+POST http://localhost:3000/comments/CreateComment
+Content-Type: application/json
+
+{
+    "_id": 3,
+    "postId": 2,
+    "content": "hi",
+    "sender": "eliav"
+}
+###
+
+GET http://localhost:3000/posts/comments/1
+
+###
+
+GET http://localhost:3000/posts/comments/2
+
+###
+
+PUT  http://localhost:3000/comments/update/3
+Content-Type: application/json
+
+{
+    "content": "whats up",
+    "sender": "testing"
+}
+###
+
+GET http://localhost:3000/comments/getComment/3
+
+###
+
+DELETE http://localhost:3000/comments/delete/3
+
+###
+
+GET http://localhost:3000/comments/getComment/3
+
