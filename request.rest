@@ -1,0 +1,66 @@
+###
+
+POST http://localhost:3000/posts/create
+Content-Type: application/json
+
+{
+    "_id": 1,
+    "title": "hi",
+    "content": "hello",
+    "sender": "test"
+}
+
+###
+
+POST http://localhost:3000/posts/create
+Content-Type: application/json
+
+{
+    "_id": 2,
+    "title": "hi",
+    "content": "hello",
+    "sender": "test2"
+}
+
+###
+
+GET http://localhost:3000/posts/posts
+
+###
+
+GET http://localhost:3000/posts/post/1
+
+###
+
+GET http://localhost:3000/posts/sender/test2
+
+###
+
+PUT  http://localhost:3000/posts/update/1
+Content-Type: application/json
+
+{
+    "title": "men",
+    "content": "whats up",
+    "sender": "testing"
+}
+
+###
+
+GET http://localhost:3000/posts/sender/test
+
+
+###
+DELETE http://localhost:3000/posts/delete/1
+
+###
+
+POST http://localhost:3000/posts/create
+Content-Type: application/json
+
+{
+    "_id": 1,
+    "title": "hi",
+    "content": "hello",
+    "sender": "test"
+}
