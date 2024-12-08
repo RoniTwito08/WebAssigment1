@@ -51,4 +51,53 @@ const deletePost = async (req, res) => {
     }
 };
 
-module.exports = {deletePost, updatePost, createPost};  
+// Get all posts
+const getPosts = async (req, res) => {
+    try {
+        const posts = await Post.find({});
+        res.status(200).json(posts);
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+};
+
+// Get a post by id
+const getPostById = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if(!post) {
+            return res.status(404).json({error: 'Post not found'});
+        }
+        res.status(200).json(post);
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+};
+
+//Get a post by sender
+const getPostBySender = async (req, res) => {
+    try {
+        const post = await Post.find({sender: req.params.sender});
+        if(!post) {
+            return res.status(404).json({error: 'Post not found'});
+        }
+        res.status(200).json(post);
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+};
+
+const getAllPostComments = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const comments = await Comment.find({postId: post._id});
+        if(!post) {
+            return res.status(404).json({error: 'Post not found'});
+        }
+        res.status(200).json(comments);
+    } catch (err) {
+        res.status(400).json({error: err.message});
+    }
+}
+
+module.exports = {createPost, updatePost , deletePost, getPosts, getPostById, getPostBySender , getAllPostComments}; 
