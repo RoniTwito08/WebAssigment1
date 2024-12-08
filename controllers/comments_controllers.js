@@ -39,4 +39,38 @@ const updateComment = async (req, res) => {
     }
 };
 
-module.exports = { createComment, updateComment};
+// Delete a comment
+const deleteComment = async (req, res) => {
+    try {
+        const comment = await Comment.findByIdAndDelete(req.params.id);
+        if (!comment) {
+            return res.status(404).json({ error: 'Comment not found' });
+        }
+        const post = await Post.findById(comment.postId);
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+        post.idCommentsArray = post.idCommentsArray.filter(
+            commentId => commentId.toString() !== req.params.id
+        );
+        await post.save();
+        res.status(200).json({ message: 'Comment deleted successfully' });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
+//Find a comment by ID
+const getCommentById = async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id);
+        if (!comment) {
+            return res.status(404).json({ error: 'Comment not found' });
+        }
+        res.status(200).json(comment);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+}
+
+module.exports = { createComment, updateComment, deleteComment , getCommentById};
